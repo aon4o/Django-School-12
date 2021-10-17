@@ -1,0 +1,17 @@
+Use MBTA API to create a simple departure board for commuter rail. Here is how a departure board looks like:
+https://commons.wikimedia.org/wiki/File:North_Station_departure_board.JPG
+
+Here is link to mbta api:
+https://www.mbta.com/developers/v3-api
+
+
+And this is link to swagger, where you can test the api and configure the api calls you should use:
+https://api-v3.mbta.com/docs/swagger/index.html
+
+
+Working call you can use:
+
+https://api-v3.mbta.com/predictions?page%5Boffset%5D=0&page%5Blimit%5D=10&sort=-departure_time&filter%5Bstop%5D=place-north
+https://api-v3.mbta.com/predictions?page%5Boffset%5D=0&page%5Blimit%5D=10&filter%5Bstop%5D=place-north
+Id of the North Station Stop
+place-north

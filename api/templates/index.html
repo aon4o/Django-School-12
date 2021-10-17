@@ -1,0 +1,67 @@
+{% extends 'parts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-12">
+
+      <h1 class="text-center">North Station Information</h1><br>
+
+      <div class="row mx-5">
+        <form class="col-4 form" action="{% url 'index' %}">
+          <div class="float-right">
+            {{ form }}
+            <input class="btn btn-primary" type="submit">
+          </div>
+        </form>
+
+        <div class="col-8 row mx-auto">
+          <form class="col form">
+            <input type="hidden" name="page" value="{{ prev }}">
+            <input type="submit" class="btn btn-primary {% if not prev %}disabled{% endif %}" value="Prev Page">
+          </form>
+
+          <form class="col form">
+            <input type="hidden" name="page" value="{{ next }}">
+            <input type="submit" class="btn btn-primary {% if not next %}disabled{% endif %}" value="Next Page">
+          </form>
+        </div>
+
+      </div>
+
+
+      <div class="card m-5 p-2 border-3">
+        <table class="table table-striped table-hover table-responsive">
+
+          <thead class="thead-dark">
+          <tr>
+            <th scope="col">Carrier</th>
+            <th scope="col">Time</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Train#</th>
+            <th scope="col">Track#</th>
+            <th scope="col">Status</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          {% for resp in response%}
+            <tr>
+              <th scope="row"></th>
+              <td>{{ resp.attributes.departure_time}}</td>
+              <td></td>
+              <td>{{ resp.relationships.vehicle.data.id }}</td>
+              <td>{{ resp.relationships.route.data.id }}</td>
+              <td>{{ resp.attributes.status }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock content %}
